@@ -30,16 +30,20 @@
                 <th scope="col">Switch Ringer</th>
             </tr>
             </thead>
-            <tbody v-for="room in rooms">
-            <tr>
-                <th scope="row">1</th>
-                <td>icon</td>
-                <td>20</td>
-                <td>icon</td>
-                <td>30</td>
-                <td>icon</td>
-                <td>icon</td>
 
+            <tbody>
+            <tr v-for="room in rooms">
+                <th scope="row">{{ room.id }}</th>
+                <td><div v-if="room.light.status == 'ON'"><img src="img/light-on.png"></div>
+                    <div v-else-if="room.light.status == 'OFF'"><img src="img/light-off.png"></div>
+                </td>
+                <td>{{ room.light.level }}</td>
+                <td><div v-if="room.noise.status == 'ON'"><img src="img/ringer-on.png"></div>
+                    <div v-else-if="room.noise.status == 'OFF'"><img src="img/ringer-off.png"></div>
+                <td>{{ room.noise.level }}</td>
+                <td><button @click="switchLight(room)" class="btn">
+                    <img src="img/switch.png" width="20" /></button></td>
+                <td><button @click="switchRinger(room)" class="btn"><img src="img/switch.png" width="20" /></button></td>
             </tr>
             </tbody>
         </table>
