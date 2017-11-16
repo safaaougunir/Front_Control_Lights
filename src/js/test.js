@@ -3,9 +3,12 @@ var app = new Vue({
     data: {
         rooms: [],
     },
-
-        getrooms: function () {
-            axios.get('http://localhost:8080/api/rooms/')
+    mounted: function () {
+        this.getrooms();
+    },
+    methods: {
+        switchLight(room) {
+            axios.post('https://springlight.herokuapp.com/api/rooms/' + room.id + '/switch-light')
                 .then(function (response) {
                     app.rooms = response.data;
                 })
@@ -13,8 +16,8 @@ var app = new Vue({
                     console.log(error);
                 });
         },
-        switchLight: function (room) {
-          ios.post('http://localhost:8080/api/rooms/' + room.id + '/switch-light')
+        getrooms() {
+            axios.get('https://springlight.herokuapp.com/api/rooms/')
                 .then(function (response) {
                     app.rooms = response.data;
                 })
@@ -22,9 +25,8 @@ var app = new Vue({
                     console.log(error);
                 });
         },
-        switch_noise: function (room) {
-
-            axios.post('localhost:8080/api/rooms/' + room.id + '/switch-noise')
+        switchNoise(room) {
+            axios.post('https://springlight.herokuapp.com/api/rooms/' + room.id + '/switch-noise')
                 .then(function (response) {
                     app.rooms = response.data;
                 })
@@ -32,9 +34,5 @@ var app = new Vue({
                     console.log(error);
                 });
         },
-
-        mounted: function () {
-            this.getrooms();
-        }
-
-})
+    }
+});
