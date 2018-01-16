@@ -7,7 +7,7 @@
     },
     methods: {
         mounted: function () {
-            axios.get('http://localhost:8080/api/rooms/')
+            axios.get('https://springlight.herokuapp.com/api/rooms/api/rooms/')
                 .then(response => {
                     this.rooms = response.data
                     console.log(this.rooms)

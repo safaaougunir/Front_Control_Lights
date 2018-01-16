@@ -17,15 +17,13 @@ var app = new Vue({
     },
     methods : {
         getBuildings : function(){
-            // axios.get('https://radiant-retreat-73612.herokuapp.com/api/rooms')
-            axios.get('http://localhost:8080/api/rooms')
+            axios.get('https://controllights.herokuapp.com/api/buildings')
                 .then(response => {
                     app.buildings = response.data})
                 .catch(function(error)
                 {console.log(error);})},
         getRooms : function() {
-                // axios.get('https://radiant-retreat-73612.herokuapp.com/api/rooms')
-                axios.get('http://localhost:8080/api/rooms')
+                axios.get('https://controllights.herokuapp.com/api/rooms')
                     .then(response => {
                         app.rooms = response.data
                     })
@@ -36,7 +34,7 @@ var app = new Vue({
         },
 
         switchRinger: function(id){
-            axios.post('http://localhost:8080/api/rooms/'+id+'/switch-noise/')
+            axios.post('https://controllights.herokuapp.com/api/rooms/'+id+'/switch-noise/')
                 .then(function (response) {
                     for(var i=0; i<app.rooms.length; i++){
                         if (id == app.rooms[i].id) {
@@ -45,7 +43,7 @@ var app = new Vue({
                     console.log(error);});},
 
         switchLight: function(id){
-            axios.post('http://localhost:8080/api/rooms/'+id+'/switch-light/')
+            axios.post('https://controllights.herokuapp.com/api/rooms/'+id+'/switch-light/')
                 .then(function (response) {
                     for(var i=0; i<app.rooms.length; i++){
                         if (id == app.rooms[i].id) {
@@ -60,7 +58,7 @@ var app = new Vue({
                 this.getRooms();
             } else {
                 this.currentBuildingID = currentBuildingID;
-                axios.get('http://localhost:8080/api/buildings/' + currentBuildingID)
+                axios.get('https://controllights.herokuapp.com/api/buildings/' + currentBuildingID)
                     .then(response => {
                         this.rooms = response.data
                     })
@@ -88,8 +86,7 @@ var switchL = new Vue({
     mounted: function (){ this.getRooms();},
     methods : {
         getRooms : function(){
-            // axios.get('https://radiant-retreat-73612.herokuapp.com/api/rooms')
-            axios.get('http://localhost:8080/api/rooms')
+            axios.get('https://controllights.herokuapp.com/api/rooms')
                 .then(response => {
                     switchL.rooms = response.data
                 })
@@ -97,7 +94,7 @@ var switchL = new Vue({
                 {console.log(error);})},
 
         switchRinger: function(id){
-            axios.post('http://localhost:8080/api/rooms/'+id+'/switch-noise/')
+            axios.post('https://controllights.herokuapp.com/api/rooms/'+id+'/switch-noise/')
                 .then(function (response) {
                     switchL.rooms = response.data
                 })
@@ -105,7 +102,7 @@ var switchL = new Vue({
                     console.log(error);});},
 
         switchLight: function(id){
-            axios.post('http://localhost:8080/api/rooms/'+id+'/switch-light/')
+            axios.post('https://controllights.herokuapp.com/api/rooms/'+id+'/switch-light/')
                 .then(function (response) {
                     switchL.rooms = response.data
                 })
@@ -116,7 +113,7 @@ var switchL = new Vue({
 
         switchLightG: function(liist){
             for(var j=0; j<liist.length; j++) {
-                axios.post('http://localhost:8080/api/rooms/'+ liist[j].id+'switch-light/' )
+                axios.post('https://controllights.herokuapp.com/api/rooms/'+ liist[j].id+'switch-light/' )
                     .then(function (response) {
                         switchL.rooms = response.data
                     })
@@ -134,7 +131,7 @@ var appB = new Vue({
     mounted: function (){ this.getBuildings();},
     methods : {
         getBuildings : function(){
-            axios.get('http://localhost:8080/api/buildings')
+            axios.get('https://controllights.herokuapp.com/api/buildings')
                 .then(response => {
                     appB.buildings = response.data})
                 .catch(function(error)
@@ -159,7 +156,7 @@ var switchR = new Vue({
     methods : {
         getRooms : function(){
             // axios.get('https://radiant-retreat-73612.herokuapp.com/api/rooms')
-            axios.get('http://localhost:8080/api/rooms')
+            axios.get('https://controllights.herokuapp.com/api/rooms')
                 .then(response => {
                     switchL.rooms = response.data
                 })
@@ -167,7 +164,7 @@ var switchR = new Vue({
                 {console.log(error);})},
 
         switchRinger: function(id){
-            axios.post('http://localhost:8080/api/rooms/'+id+'/switch-noise/')
+            axios.post('https://controllights.herokuapp.com/api/rooms/'+id+'/switch-noise/')
                 .then(function (response) {
                     switchL.rooms = response.data
                 })
@@ -175,7 +172,7 @@ var switchR = new Vue({
                     console.log(error);});},
 
         switchLight: function(id){
-            axios.post('http://localhost:8080/api/rooms/'+id+'/switch-light/')
+            axios.post('https://controllights.herokuapp.com/api/rooms/'+id+'/switch-light/')
                 .then(function (response) {
                     switchL.rooms = response.data
                 })
@@ -186,7 +183,7 @@ var switchR = new Vue({
 
         switchRingerG: function(liist){
             for(var j=0; j<liist.length; j++) {
-                axios.post('http://localhost:8080/api/rooms/'+liist[j].id+'switch-light/')
+                axios.post('https://controllights.herokuapp.com/api/rooms/'+liist[j].id+'switch-light/')
                     .then(function (response) {
                         switchL.rooms = response.data
                     })
