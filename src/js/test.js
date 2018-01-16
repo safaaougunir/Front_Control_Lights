@@ -25,8 +25,9 @@ var app = new Vue({
                     console.log(error);
                 });
         },
-        switchNoise(room) {
-            axios.post('https://springlight.herokuapp.com/api/rooms/' + room.id + '/switch-noise')
+
+        switchNoise(roomid) {
+                      axios.post('https://springlight.herokuapp.com/api/rooms/' + roomid + '/switch-noise')
                 .then(function (response) {
                     app.rooms = response.data;
                 })
